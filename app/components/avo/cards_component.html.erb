@@ -1,0 +1,18 @@
+<div class="min-h-24">
+  <%= content_tag(:div, class: "grid gap-4 grid-cols-1 #{@classes}") do %>
+    <% @cards.each do |item| %>
+      <% if item.is_divider? %>
+        <%= render Avo::Cards::DividerComponent.new(divider: item) %>
+      <% elsif item.is_card? %>
+        <%= content_tag(:div, class: "relative bg-white rounded shadow-panel space-y-2 #{item.card_classes} overflow-hidden") do %>
+          <turbo-frame id="<%= item.turbo_frame %>"
+            src="<%= item.frame_url(enforced_range: @range, params: params) %>"
+            data-card-index="<%= item.index %>"
+          >
+            <%= render(Avo::LoadingComponent.new(title: item.label)) %>
+          </turbo-frame>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

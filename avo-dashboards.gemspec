@@ -1,5 +1,5 @@
 require_relative 'lib/avo/dashboards/version'
-require_relative '../avo/lib/avo/version'
+#require_relative '../avo/lib/avo/version'
 
 Gem::Specification.new do |spec|
   spec.name = 'avo-dashboards'
